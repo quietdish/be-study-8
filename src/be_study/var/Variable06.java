@@ -35,6 +35,8 @@ public class Variable06 {
 		
 		System.out.println( str1 == "커피");
 		System.out.println( str1.equals("커피"));
+
+		/*커밋다시 */
 	}
 
 }
