@@ -49,12 +49,12 @@ public class Refer01 {
 		
 		// 값 복사
 		int n1 =10;
-		int n2 = n1;
+		int n2 = n1;			//정수형 변수 안에 들어있는 값 복사
 		System.out.println(n1);
 		System.out.println(n2);
 		
 		String str1 = "커피";
-		String str2 = str1;
+		String str2 = str1; 	//참조형 변수 안에 있는 값(주소) 복사
 		System.out.println(str1);
 		System.out.println(str2);
 	}
