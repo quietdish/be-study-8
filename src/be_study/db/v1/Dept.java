@@ -39,10 +39,12 @@ public class Dept {
 		this.loc = loc;
 	}
 
-	public Dept() {
-		super();
+	@Override
+	public String toString() {
+		return "Dept [deptno=" + deptno + ", dname=" + dname + ", loc=" + loc + "]";
 	}
 
-	public Dept()
+	
+
 	
 }
