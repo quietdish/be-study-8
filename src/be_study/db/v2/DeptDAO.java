@@ -9,14 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Repository
-//DAO : Data Access Object
+//DAO : Data Access Object  
 public class DeptDAO {
 
-// Dept 데이터 관련된 DB 접근 객체
+	// Dept 데이터 관련된 DB 접근 객체
 
 	public Dept findDeptByDeptno(int deptno) {
 
-//db 연결, 실행 객체
+		// db 연결, 실행 객체
 		Connection conn = null; // db 연결
 		PreparedStatement psmt = null; // db 연결해서 sql 명령 실행해주는 객체
 		ResultSet rs = null; // sql 실행 후 select 결과를 저장하는 객체
@@ -25,19 +25,19 @@ public class DeptDAO {
 
 		Dept dept = null;
 
-//실행할 쿼리 준비
+		// 실행할 쿼리 준비
 		String sqlQuery = " select * from dept where deptno = ? ";
 
-//쿼리 실행, 실행 후 후속 데이터 처리
+		// 쿼리 실행, 실행 후 후속 데이터 처리
 		try {
 			psmt = conn.prepareStatement(sqlQuery);
-//파라미터 세팅 (쿼리에 있는 ? 위치에 값 채우기)
+			// 파라미터 세팅 (쿼리에 있는 ? 위치에 값 채우기)
 			psmt.setInt(1, deptno);
 
 			rs = psmt.executeQuery(); // 쿼리 실행
-//조회한 데이터가 1개인 경우
+			// 조회한 데이터가 1개인 경우
 			if (rs.next()) { // 다음에 읽어올 데이터(행단위)가 있는가? true 다음 데이터가 있다
-//데이터가 있다
+				// 데이터가 있다
 				dept = new Dept();
 
 				dept.setDeptno(rs.getInt("deptno"));
@@ -55,7 +55,7 @@ public class DeptDAO {
 
 	public Dept findDeptByDname(String dname) {
 
-//db 연결, 실행 객체
+		// db 연결, 실행 객체
 		Connection conn = null; // db 연결
 		PreparedStatement psmt = null; // db 연결해서 sql 명령 실행해주는 객체
 		ResultSet rs = null; // sql 실행 후 select 결과를 저장하는 객체
@@ -64,22 +64,22 @@ public class DeptDAO {
 
 		Dept dept = null;
 
-//실행할 쿼리 준비
+		// 실행할 쿼리 준비
 		String sqlQuery = " select * from dept where dname = ? ";
 
-//쿼리 실행, 실행 후 후속 데이터 처리
+		// 쿼리 실행, 실행 후 후속 데이터 처리
 		try {
 			psmt = conn.prepareStatement(sqlQuery);
 
-//파라미터 세팅 (쿼리에 있는 ? 위치에 값 채우기)
+			// 파라미터 세팅 (쿼리에 있는 ? 위치에 값 채우기)
 			psmt.setString(1, dname);
 
 			rs = psmt.executeQuery(); // 쿼리 실행
 
-//조회한 데이터가 1개인 경우
+			// 조회한 데이터가 1개인 경우
 			if (rs.next()) { // 다음에 읽어올 데이터(행단위)가 있는가? true 다음 데이터가 있다
 
-//데이터가 있다
+				// 데이터가 있다
 				dept = new Dept();
 
 				dept.setDeptno(rs.getInt("deptno"));
@@ -98,34 +98,34 @@ public class DeptDAO {
 
 	public List<Dept> findDeptList() {
 
-//db 연결, 실행 객체
+		// db 연결, 실행 객체
 		Connection conn = null; // db 연결
 		PreparedStatement psmt = null; // db 연결해서 sql 명령 실행해주는 객체
 		ResultSet rs = null; // sql 실행 후 select 결과를 저장하는 객체
 
 		conn = DBConnectionManager.connectDB();
 
-//실행할 쿼리 준비
+		// 실행할 쿼리 준비
 		String sqlQuery = " select * from dept ";
-//String sqlQuery = " select * from dept where 1=2 ";
+		// String sqlQuery = " select * from dept where 1=2 ";
 
 		List<Dept> deptList = null;
 
-//쿼리 실행, 실행 후 후속 데이터 처리
+		// 쿼리 실행, 실행 후 후속 데이터 처리
 		try {
 
 			psmt = conn.prepareStatement(sqlQuery);
 			rs = psmt.executeQuery();
 
 			while (rs.next()) { // 다음에 읽어올 데이터(행단위)가 있는가? true 다음 데이터가 있다
-// rs가 하나의 행을 가리키고, 열단위 값을 기준으로 조회
-//데이터가 있다.
+				// rs가 하나의 행을 가리키고, 열단위 값을 기준으로 조회
+				// 데이터가 있다.
 
-//한줄 조회 한 행 데이터
-// 한 행 데이터 -> Dept 객체 저장
-// List<Dept> .add(Dept)
+				// 한줄 조회 한 행 데이터
+				// 한 행 데이터 -> Dept 객체 저장
+				// List<Dept> .add(Dept)
 
-// column 이름(별칭) 기준 조회
+				// column 이름(별칭) 기준 조회
 				Dept dept = new Dept();
 
 				dept.setDeptno(rs.getInt("deptno"));
@@ -148,11 +148,11 @@ public class DeptDAO {
 
 	}
 
-// SELECT -> 쿼리실행 -> DB 테이블 정보 조회 -> ResultSet -> 객체/리스트단위 변수 변환
+	// SELECT -> 쿼리실행 -> DB 테이블 정보 조회 -> ResultSet -> 객체/리스트단위 변수 변환
 
-// INSERT UPDATE DELETE -> 실행 -> return 결과 : 적용된 행의 갯수
+	// INSERT UPDATE DELETE -> 실행 -> return 결과 : 적용된 행의 갯수
 
-// 저장 INSERT
+	// 저장 INSERT
 
 	public int saveDept(int deptno, String dname, String loc) {
 
@@ -162,12 +162,12 @@ public class DeptDAO {
 
 		conn = DBConnectionManager.connectDB();
 
-//실행할 쿼리 준비
+		// 실행할 쿼리 준비
 		String sqlQuery = " insert into dept (deptno, dname, loc) values ( ?, ?, ? ) ";
 
 		int result = 0;
 
-//쿼리 실행, 실행 후 후속 데이터 처리
+		// 쿼리 실행, 실행 후 후속 데이터 처리
 		try {
 
 			psmt = conn.prepareStatement(sqlQuery);
@@ -175,10 +175,10 @@ public class DeptDAO {
 			psmt.setInt(1, deptno);
 			psmt.setString(2, dname);
 			psmt.setString(3, loc);
-// rs = psmt.executeQuery(); //select
+			// rs = psmt.executeQuery(); //select
 
-// INSERT UPDATE DELETE -> 적용된 행 갯수
-// executeUpdate();
+			// INSERT UPDATE DELETE -> 적용된 행 갯수
+			// executeUpdate();
 			result = psmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -198,12 +198,12 @@ public class DeptDAO {
 
 		conn = DBConnectionManager.connectDB();
 
-//실행할 쿼리 준비
+		// 실행할 쿼리 준비
 		String sqlQuery = " insert into dept (deptno, dname, loc) values ( ?, ?, ? ) ";
 
 		int result = 0;
 
-//쿼리 실행, 실행 후 후속 데이터 처리
+		// 쿼리 실행, 실행 후 후속 데이터 처리
 		try {
 
 			psmt = conn.prepareStatement(sqlQuery);
@@ -211,10 +211,10 @@ public class DeptDAO {
 			psmt.setInt(1, dept.getDeptno());
 			psmt.setString(2, dept.getDname());
 			psmt.setString(3, dept.getLoc());
-// rs = psmt.executeQuery(); //select
+			// rs = psmt.executeQuery(); //select
 
-// INSERT UPDATE DELETE -> 적용된 행 갯수
-// executeUpdate();
+			// INSERT UPDATE DELETE -> 적용된 행 갯수
+			// executeUpdate();
 			result = psmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -226,7 +226,7 @@ public class DeptDAO {
 		return result;
 	}
 
-// 삭제 DELETE
+	// 삭제 DELETE
 	public int removeDept(int deptno) { // PK 컬럼 deptno 값 기준으로 삭제
 
 		Connection conn = null; // db 연결
@@ -235,19 +235,19 @@ public class DeptDAO {
 
 		conn = DBConnectionManager.connectDB();
 
-//실행할 쿼리 준비
-		String sqlQuery = " delete from dept where deptno = ? ";
+		// 실행할 쿼리 준비
+		String sqlQuery = " delete from dept where deptno = ?  ";
 
 		int result = 0;
 
-//쿼리 실행, 실행 후 후속 데이터 처리
+		// 쿼리 실행, 실행 후 후속 데이터 처리
 		try {
 			psmt = conn.prepareStatement(sqlQuery);
 
 			psmt.setInt(1, deptno);
-// rs = psmt.executeQuery(); //select
-// INSERT UPDATE DELETE -> 적용된 행 갯수
-// executeUpdate();
+			// rs = psmt.executeQuery(); //select
+			// INSERT UPDATE DELETE -> 적용된 행 갯수
+			// executeUpdate();
 			result = psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -260,6 +260,40 @@ public class DeptDAO {
 
 	public int removeDept(Dept dept) {
 		return removeDept(dept.getDeptno());
+	}
+
+	// Update
+	public int modifyDept(Dept dept) { // PK 컬럼 deptno 값을 기준으로 다른 값을 수정
+
+		Connection conn = null; // db 연결
+		PreparedStatement psmt = null; // db 연결해서 sql 명령 실행해주는 객체
+		ResultSet rs = null; // sql 실행 후 select 결과를 저장하는 객체
+
+		conn = DBConnectionManager.connectDB();
+
+		// 실행할 쿼리 준비
+		String sqlQuery = " update dept " + " set dname = ? , loc = ? " + " where deptno = ? ";
+
+		int result = 0;
+
+		// 쿼리 실행, 실행 후 후속 데이터 처리
+		try {
+			psmt = conn.prepareStatement(sqlQuery);
+
+			psmt.setString(1, dept.getDname());
+			psmt.setString(2, dept.getLoc());
+			psmt.setInt(3, dept.getDeptno());
+
+			result = psmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.disconnectDB(conn, psmt, rs);
+		}
+
+		return result;
+
 	}
 
 }
