@@ -2,8 +2,6 @@ package be_study.db.v4;
 
 public class StudentDTO {
 	
-	
-	
 	int studno;
 	String name;
 	String id;
@@ -18,12 +16,17 @@ public class StudentDTO {
 	//int deptno2;		// int -> 기본값 0  자바 : 숫자값
 						// DB -> 복수전공(2전공) 이 없다 -> null     Nullable (NOT NULL이 아님)
 	Integer deptno2;
-	
 	//int 기본타입 -> Integer    Wrapper 클래스
 	//double -> Double
 	//boolean -> Boolean
-	
 	int profno;
+	
+	//---------------------------
+	//Department
+//	int deptno;
+//	String dname;
+//	int part;
+//	String build;
 	
 	public int getStudno() {
 		return studno;
